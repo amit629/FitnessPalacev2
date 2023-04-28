@@ -3,7 +3,7 @@ import { GoogleMap,useLoadScript,MarkerF} from '@react-google-maps/api';
 
 export default function AllGymMaps({placeData}){
     const {isLoaded}=useLoadScript({
-        googleMapsApiKey:process.env.REACT_MAP_API,    
+        googleMapsApiKey:process.env.REACT_APP_MAP_API,    
     });
 
     if(!isLoaded)return <div>loading...</div>
