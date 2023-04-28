@@ -13,9 +13,9 @@ Router.get('/gymTest',(req,res)=>{
 Router.post('/getNearByData',async(req,res)=>{
     let {latitude,longitude}=req.body;
     const creds={
-		grant_type:"client_credentials",
-		client_id:"33OkryzDZsI8CRzx0Zp-4a9rAB5QzYTnkbcB6w8emuCkFeMtOFf3FK70IGx_k_aHvBOzeNf6--hAbCLWSJA_Pw==",
-		client_secret:"lrFxI-iSEg87E0vChqDl5pdx3IYmPJNw-tY11Fm-d9RRn2ENMUUsz095kdygu_xByMVGOpIcDDanKeq5tyglY6B1AnF261se"	
+		grant_type:"",
+		client_id:"",
+		client_secret:""	
 	}
     // console.log(req.body)
     
