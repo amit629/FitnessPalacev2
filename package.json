@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "start": "cd ./node_modules/cors-anywhere&node server.js"
+  },
+  "dependencies": {
+    "cors-anywhere": "^0.4.4"
+  }
+}
