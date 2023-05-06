@@ -29,7 +29,7 @@ export default function MyProducts() {
       localItem=JSON.parse(localItem);
       if(localItem!=null)
       {
-          axios.get('http://localhost:4000/admin/myProducts',{
+          axios.get(`${process.env.REACT_APP_SERVER_URL}admin/myProducts`,{
           headers: {
             'Authorization': `token ${localItem.accessToken}`
           },

@@ -66,7 +66,7 @@ export default function StoreProduct() {
         <div class="container-fluid px-4 px-lg-5 my-5" >
             <div class="row gx-4 gx-lg-5 align-items-center mt-5">
                 <div class="col-md-5">
-                  <img class="card-img-top mb-5 mb-md-0 productImage" src={`http://localhost:4000/productImages/${productData.image.fileName}`} alt="..." />
+                  <img class="card-img-top mb-5 mb-md-0 productImage" src={`${process.env.REACT_APP_SERVER_URL}productImages/${productData.image.fileName}`} alt="..." />
                 </div>
                 <div className="col"></div>
                 <div class="col-md-6">
@@ -121,7 +121,7 @@ export default function StoreProduct() {
                           <div class="col mb-5">
                             <div class="card h-100 relCard" style={{width:"300px"}}>
                                 
-                                  <img class="card-img-top relProductImage" src={`http://localhost:4000/productImages/${ele.image.fileName}`} alt="product" style={{width:'100%',marginBottom:"10px"}}/>
+                                  <img class="card-img-top relProductImage" src={`${process.env.REACT_APP_SERVER_URL}productImages/${ele.image.fileName}`} alt="product" style={{width:'100%',marginBottom:"10px"}}/>
                                   
                                   <div class="card-body-top">
                                       <div class="text-center">

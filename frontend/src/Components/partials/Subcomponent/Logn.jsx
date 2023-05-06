@@ -40,7 +40,7 @@ export default function Logn() {
             return;
         }
         // console.log(userData)
-        let response=await axios.post('http://localhost:4000/login',{
+        let response=await axios.post(`${process.env.REACT_APP_SERVER_URL}login`,{
             userData
         })
         // console.log(response);

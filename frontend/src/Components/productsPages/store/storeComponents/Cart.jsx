@@ -73,7 +73,7 @@ export default function Cart() {
                                             <div className="container-fluid mt-3">
                                                 <div class="Cart-Items">
                                                     <div class="image-box">
-                                                        <img src={`http://localhost:4000/productImages/${ele.item.image.fileName}`}  style={{height:"120px"}} />
+                                                        <img src={`${process.env.REACT_APP_SERVER_URL}productImages/${ele.item.image.fileName}`}  style={{height:"120px"}} />
                                                     </div>
                                                     <div class="about">
                                                         <h3 class="title">{ele.item.name}</h3>

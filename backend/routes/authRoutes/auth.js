@@ -8,22 +8,8 @@ const { accessSecret } = require('../../tokens');
 const bcrypt=require('bcrypt')
 const {upload}=require('../../multer');
 const AddressModal = require('../../model/Addresses');
+const {verifyAuth,isSuperAdmin}=require('../../adminMiddleWares/middle')
 
-let verifyAuth=(req,res,next)=>{
-    const authHeader=req.headers['authorization'];
-    let token=authHeader && authHeader.split(' ')[1];
-    if(token==null){
-       return  res.redirect('/error')
-    }
-    jsonWebToken.verify(token,accessSecret,(err,user)=>{
-        if(err)
-        {
-            return res.redirect('/error');
-        }
-        req.user=user
-        next()
-    })
-}
 
 Router.get('/getUser',verifyAuth,async(req,res)=>{
     let user=req.user.userExist
@@ -76,7 +62,7 @@ Router.put('/setProfileImage',verifyAuth,upload.single('file'),async(req,res)=>{
     })
 })
 Router.post('/register',async (req,res)=>{
-    let {name,email,pass}=req.body.userData;
+    let {name,email,pass,userRole}=req.body.userData;
     err=[];
     const prevExist= await userModal.findOne({email:email});
     var query;
@@ -90,6 +76,10 @@ Router.post('/register',async (req,res)=>{
         pro.name=name;
         pro.email=email;
         pro.password=hashedPass;
+        if(userRole!=undefined)
+        {
+            pro.role=userRole
+        }
         console.log(req.body)
         query=await pro.save();
     }
@@ -192,6 +182,24 @@ Router.post('/addAddress',verifyAuth,async(req,res)=>{
         address:data
     })
 })
+Router.put('/editAddress/:id',verifyAuth,async(req,res)=>{
+    // console.log(req.user)
+    let {custName,HouseNo,locality,Pincode,District,State,Mobile}=req.body
+    let obj={
+        custName:custName,
+        HouseNo:HouseNo,
+        locality:locality,
+        Pincode:Pincode,
+        District:District,
+        State:State,
+        Mobile:Mobile
+    }
+    let add=await AddressModal.updateOne({aid:req.params.id},{$set:obj});
+    let data=await AddressModal.findOne({aid:req.params.id});
+    res.json({
+        address:data
+    })
+})
 Router.get('/helloBabe',verifyAuth,(req,res)=>{
     res.json({
         user:req.user
@@ -203,7 +211,7 @@ Router.get('/products',(req,res)=>{
 })
 
 Router.get('/error',(req,res)=>{
-    res.json({
+    res.status(403).json({
         err:'error'
     })
 })

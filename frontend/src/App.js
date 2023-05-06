@@ -25,6 +25,8 @@ import Profile from "./Components/productsPages/store/Profile";
 import ProfAbout from "./Components/productsPages/store/storeComponents/ProfAbout";
 import Addresses from "./Components/productsPages/store/storeComponents/Addresses";
 import CheckOut from "./Components/productsPages/store/storeComponents/CheckOut";
+import AddWorkout from "./Components/productsPages/workouts/superAdmin/AddWorkout";
+import WorkoutsLan from "./Components/productsPages/workouts/workOutComponent/WorkoutsLan";
 
 const router=createBrowserRouter(
   createRoutesFromElements(
@@ -55,7 +57,7 @@ const router=createBrowserRouter(
             let data={
               place_id:params.id
             }
-            let resp=await fetch('http://localhost:4000/getGymDetails',{
+            let resp=await fetch(`${process.env.REACT_APP_SERVER_URL}getGymDetails`,{
               method:'POST',
               headers: {
                   'Content-Type': 'application/json',
@@ -86,7 +88,7 @@ const router=createBrowserRouter(
                 throw new Error('login to kar be')
               }
               accessToken=JSON.parse(accessToken).accessToken;
-              let resp=await axios.get(`http://localhost:4000/getUser`,{
+              let resp=await axios.get(`${process.env.REACT_APP_SERVER_URL}getUser`,{
                 headers:{
                   'Authorization':`token ${accessToken}`
                 }
@@ -119,7 +121,7 @@ const router=createBrowserRouter(
               }
               accessToken=JSON.parse(accessToken).accessToken;
               let userData="";
-              let resp=await axios.get(`http://localhost:4000/getUser`,{
+              let resp=await axios.get(`${process.env.REACT_APP_SERVER_URL}getUser`,{
                 headers:{
                   'Authorization':`token ${accessToken}`
                 }
@@ -146,7 +148,7 @@ const router=createBrowserRouter(
             path="product/:id" 
             element={<StoreProduct/>}
             loader={async({params})=>{
-              let resp=await axios.get(`http://localhost:4000/products/getData/${params.id}`);
+              let resp=await axios.get(`${process.env.REACT_APP_SERVER_URL}products/getData/${params.id}`);
               let data=resp.data;
               if(data.error.length!=0)
               {
@@ -173,7 +175,7 @@ const router=createBrowserRouter(
               }
               accessToken=JSON.parse(accessToken).accessToken;
               let userData="";
-              let resp=await axios.get(`http://localhost:4000/getUser`,{
+              let resp=await axios.get(`${process.env.REACT_APP_SERVER_URL}getUser`,{
                 headers:{
                   'Authorization':`token ${accessToken}`
                 }
@@ -189,7 +191,7 @@ const router=createBrowserRouter(
                 userData=resp.data.userData;
               }
               let address=userData.address
-              let Address=await axios.get('http://localhost:4000/getAddress',{
+              let Address=await axios.get(`${process.env.REACT_APP_SERVER_URL}getAddress`,{
                 headers:{
                   'Authorization':`token ${accessToken}`
                 }
@@ -225,7 +227,7 @@ const router=createBrowserRouter(
                 let data={
                   place_id:params.id
                 }
-                let resp=await axios.get(`http://localhost:4000/admin/myProduct/${data.place_id}/edit`,{
+                let resp=await axios.get(`${process.env.REACT_APP_SERVER_URL}admin/myProduct/${data.place_id}/edit`,{
                   headers:{
                     'Authorization':`token ${accessToken.accessToken}`
                   }
@@ -238,7 +240,18 @@ const router=createBrowserRouter(
             </Route>
           </Route>
       </Route>
-      <Route path="app/workouts" element={<WorkoutHome/>}></Route>
+      <Route path="app/workouts" element={<WorkoutHome/>}>
+              <Route index element={<WorkoutsLan/>}
+              loader={async({params})=>{
+                let resp=await axios.get(`${process.env.REACT_APP_SERVER_URL}workout`)
+
+                return resp;
+              }}
+              errorElement={<NotFound/> }
+              
+              ></Route>
+            <Route path="addWorkout" element={<AddWorkout/>}></Route>
+      </Route>
   </Route>
   </>
 

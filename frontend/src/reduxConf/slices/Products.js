@@ -31,7 +31,7 @@ export const {setProduct,addProduct,deleteProduct} = ProductsData.actions
 
 
 export let getProductAsync=()=>async(dispatch)=>{
-    let product=await axios.get('http://localhost:4000/products/getData');
+    let product=await axios.get(`${process.env.REACT_APP_SERVER_URL}products/getData`);
     if(product.status==201 && product.data.error.length==0)
     {
         dispatch(setProduct(product.data.productData));

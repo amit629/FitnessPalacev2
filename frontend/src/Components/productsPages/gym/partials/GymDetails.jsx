@@ -28,9 +28,15 @@ export default function GymDetails() {
               <div className="row">
                 <div className="col rm-scroll" style={{height:'40vh',overflow:'auto'}}>
                   {
-                    gymdata.reviews.map((ele,ind)=>{
-                        return <GymReviewCard review={ele} key={ind}/>
-                    })
+                    (gymdata.reviews==undefined || !gymdata.reviews)?<>
+                      <h2>No reviews</h2>
+                    </>:<>
+                    {
+                        gymdata.reviews.map((ele,ind)=>{
+                            return <GymReviewCard review={ele} key={ind}/>
+                        })
+                      }
+                    </>
                   }
                 </div>
               </div>

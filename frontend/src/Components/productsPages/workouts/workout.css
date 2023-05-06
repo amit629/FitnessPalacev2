@@ -1,0 +1,37 @@
+.spConWorkout{
+    /* background-color: red; */
+    padding:30px;
+    padding-top:20px;
+    padding-bottom:10vh;
+}
+
+.buttonC{
+    width:160px;
+    height: 60px;   
+    background-color: white;
+    color: black;
+    border: 2px solid green;
+    border-radius:40px;
+    margin-top: 30px;
+
+}
+.buttonC:hover{
+    color: white;
+    background-color: green;
+}
+
+.buttonCBackgr{
+    background-color: green;
+
+}
+.body-map__muscle{
+    color:white;
+}
+.body-map__muscle:hover{
+    color:red;
+}
+.dummyContainer{
+    height:80vh !important;
+    position: relative;
+    left:10vw;
+}

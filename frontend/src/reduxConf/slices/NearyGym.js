@@ -61,7 +61,7 @@ export const getDataAsync=()=>async(dispatch)=>{
         //     dispatch(getGym({err:'Please Enable Loc'}));
         //     return;
         // }
-        let data=await fetch(`http://localhost:4000/getNearbyGymData`,{
+        let data=await fetch(`${process.env.REACT_APP_SERVER_URL}getNearbyGymData`,{
             method:'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ export const getMoreGymDataAsync=()=>async(dispatch)=>{
         const send={
             next_token:next_page_token
         }
-        let data=await fetch('http://localhost:4000/getNearbyGymData/moreData',{
+        let data=await fetch(`${process.env.REACT_APP_SERVER_URL}getNearbyGymData/moreData`,{
             method:'POST',
             headers:{
                 'Content-Type': 'application/json',

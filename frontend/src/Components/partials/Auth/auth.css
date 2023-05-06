@@ -253,7 +253,7 @@ display-flex, .display-flex, .display-flex-center, .signup-content, .signin-cont
     margin-bottom: 150px; }
   
   .signup-content {
-    padding: 75px 0; }
+    padding: 60px 0; }
   
   .signup-form, .signup-image, .signin-form, .signin-image {
     width: 50%;
@@ -316,7 +316,18 @@ display-flex, .display-flex, .display-flex-center, .signup-content, .signin-cont
     overflow: hidden; }
     .form-group:last-child {
       margin-bottom: 0px; }
+
+      .form-group-two {
+        position: relative;
+        margin-bottom: 15px;
+        overflow: hidden; }
+        .form-group-two:last-child {
+          margin-bottom: 0px; }
   
+
+  .passwod{
+      background-color: red;
+  }
   input {
     width: 100%;
     display: block;

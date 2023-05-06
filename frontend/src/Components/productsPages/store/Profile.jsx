@@ -25,7 +25,7 @@ export default function Profile() {
       let formData=new FormData();
       formData.append('file',imagData.file);
       formData.append('uid',imagData.uid)
-      let resp=await axios.put('http://localhost:4000/setProfileImage',formData,{
+      let resp=await axios.put(`${process.env.REACT_APP_SERVER_URL}setProfileImage`,formData,{
         headers:{
           "Authorization":`token ${JSON.parse(localStorage.getItem('login')).accessToken}`,
           "Content-Type": 'multipart/form-data'
@@ -47,7 +47,7 @@ export default function Profile() {
             <div className="row ">
               <div className="col-4 ">
                 <div className='container-fluid ms-5 mt-5'> 
-                  <img src={`http://localhost:4000/productImages/${userData.image}`} className='ProfileImg ' onClick={()=>{setVis((prev)=>{return !prev})}}>
+                  <img src={`${process.env.REACT_APP_SERVER_URL}productImages/${userData.image}`} className='ProfileImg ' onClick={()=>{setVis((prev)=>{return !prev})}}>
                     
                     </img>
                   {vis&&

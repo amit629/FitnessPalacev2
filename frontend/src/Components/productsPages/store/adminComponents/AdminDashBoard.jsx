@@ -13,7 +13,7 @@ export default function AdminDashBoard() {
       dataFetchedRef.current = true;
     console.log(userData)
     const localItem=localStorage.getItem('login');
-    if(localItem==null || JSON.parse(localItem).role!="seller")
+    if(localItem==null || JSON.parse(localItem).role=="buyer")
     {
         // alert('access denied')
         navigate('/app')

@@ -13,7 +13,7 @@ export default function AdminCards({data}) {
 
   const delProduct=async ()=>{
     console.log(data._id)
-    let deleteReq=await axios.delete(`http://localhost:4000/admin/MyProducts/${data.pid}/delete`,{
+    let deleteReq=await axios.delete(`${process.env.REACT_APP_SERVER_URL}admin/MyProducts/${data.pid}/delete`,{
       headers:{
         'Authorization':`token ${userData.accessToken}`
       }
@@ -31,7 +31,7 @@ export default function AdminCards({data}) {
     
     <>
         <div class="card" align="center">
-          <img src={`http://localhost:4000/productImages/${data.image.fileName}`}class="card-img-top" alt="..."/>
+          <img src={`${process.env.REACT_APP_SERVER_URL}productImages/${data.image.fileName}`} class="card-img-top m-0 mb-3" style={{position:'relative'}} alt="..."/>
           <div class="card-body">
           <h5 class="card-title">
                   {data.name.slice(0,40)+"..."}

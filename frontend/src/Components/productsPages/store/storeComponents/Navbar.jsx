@@ -43,7 +43,7 @@ export default function Navbar() {
                     <Link className="navbar-link fs-3" aria-current="page" to="/app">Home</Link>
                   </li>
                   {
-                    userData.role=="seller"&&(<>
+                    (userData.role=="seller" || userData.role=='admin')&&(<>
                         <li className="nav-item">
                         <Link className="navbar-link fs-3" aria-current="page" to="/app/admin">Add Products</Link>
                         </li> 

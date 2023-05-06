@@ -27,7 +27,7 @@ export default function AddProducts() {
     formData.append('category',productData.sel);
     formData.append('filename',img.fileData)
     formData.append('file',img.selFile);
-    const resp=await axios.post('http://localhost:4000/admin/addProducts',formData,{
+    const resp=await axios.post(`${process.env.REACT_APP_SERVER_URL}admin/addProducts`,formData,{
       headers: {
         'Authorization': `token ${userData.accessToken}`,
         'content-type': 'multipart/form-data'

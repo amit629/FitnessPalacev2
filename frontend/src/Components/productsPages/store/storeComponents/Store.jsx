@@ -41,7 +41,7 @@ export default function Store() {
                           <>
                           <div className="col-4">
                             <div className="card productcards bg-light"  onClick={()=>{navigate(`/app/product/${ele._id}`)}}>
-                                  <img src={`http://localhost:4000/productImages/${ele.image.fileName}`} className="card-img-top imageStyle" alt="..."/>
+                                  <img src={`${process.env.REACT_APP_SERVER_URL}productImages/${ele.image.fileName}`} className="card-img-top imageStyle" alt="..."/>
                                   <div className="card-body" align="left">
                                       <h5 className="card-title">{ele.name.slice(0,40)}</h5>
                                       <p className="card-text">Rs {ele.price}</p>

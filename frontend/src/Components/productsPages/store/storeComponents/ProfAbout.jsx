@@ -24,7 +24,7 @@ function EditForm({userData,setEdit}){
         console.log(formState)
     }
     let handleOnSave=async(e)=>{
-        let resp=await axios.put('http://localhost:4000/User',formState,{
+        let resp=await axios.put(`${process.env.REACT_APP_SERVER_URL}User`,formState,{
             headers:{
                 'Authorization':`token ${JSON.parse(localStorage.getItem('login')).accessToken}`
             }

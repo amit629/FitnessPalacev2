@@ -13,7 +13,8 @@ export default function Register() {
         name:"",
         email:"",
         pass:"",
-        re_pass:""
+        re_pass:"",
+        userRole:""
     })
     
     let[err,setErr]=useState(false);
@@ -49,7 +50,7 @@ export default function Register() {
             setErr(true);
             return;
         }
-        let response=await axios.post('http://localhost:4000/register',{
+        let response=await axios.post(`${process.env.REACT_APP_SERVER_URL}register`,{
             userData
         })
         console.log(response);
@@ -103,10 +104,14 @@ export default function Register() {
                         <label htmlFor="re-pass"><i className="fa-solid fa-unlock material-icons-name"></i></label>
                         <input type="text" name="re_pass" id="re_pass" placeholder="Repeat your password"  onChange={onInputChange}/>
                     </div>
-                    {/* <div className="form-group">
-                        <input type="checkbox" name="agree-term" id="agree-term" className="agree-term" />
-                        <label htmlFor="agree-term" className="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" className="term-service">Terms of service</a></label>
-                    </div> */}
+                    <div class="form-group-two">
+                        <label for="#passwo" className='text-dark '>Buyer</label>
+                        <input id="passwo"  className='passwod' type="radio"  name="userRole" value="buyer" required onChange={onInputChange}/>
+                    </div>
+                    <div class="form-group-two">
+                        <label for="#passwo" className=''>Seller</label>
+                        <input id="passwo" className='passwod' type="radio" name="userRole" value="seller" required onChange={onInputChange}/>
+                    </div>
                     <div className="form-group form-button">
                         <input type="submit" name="signup" id="signup" className="form-submit" value="Register"/>
                     </div>

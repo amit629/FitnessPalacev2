@@ -7,7 +7,7 @@ export default function Auth() {
         <div className="container-fluid bg-danger" style={{height:"100vh",width:'100vw'}}>
                  
                 <Link to="/"><i class="fa-sharp fa-solid fa-xmark authCross"></i></Link>
-                <div style={{position:'relative',top:'15vh'}}>
+                <div style={{position:'relative',top:'12vh'}}>
                     <Outlet/>
                 </div>
         </div>

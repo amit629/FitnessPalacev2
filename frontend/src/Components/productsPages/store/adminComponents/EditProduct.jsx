@@ -51,7 +51,7 @@ export default function EditProduct() {
         formData.append('category',productData.sel);
         formData.append('filename',img.fileData)
         formData.append('file',img.selFile);
-        const resp=await axios.put(`http://localhost:4000/admin/MyProducts/${data.pid}/edit`,formData,{
+        const resp=await axios.put(`${process.env.REACT_APP_SERVER_URL}admin/MyProducts/${data.pid}/edit`,formData,{
           headers: {
             'Authorization': `token ${userData.accessToken}`,
             'content-type': 'multipart/form-data'
@@ -106,11 +106,13 @@ export default function EditProduct() {
                 </div>
                 <div class="m-5 mb-2">
                     <select name="sel" id="" class="form-control inp" value={productData.sel} onChange={handleOnChange} required>
-                        <option value="">please select from list</option>
-                        <option value="protiens">protien</option>
-                        <option value="gainers">gainer</option>
-                        <option value="vitamins">vitamin</option>
-                        <option value="fitness">fitness</option>
+                    <option value="">please select from list</option>
+                    <option value="protiens">protien</option>
+                    <option value="gainers">gainer</option>
+                    <option value="vitamins">vitamin</option>
+                    <option value="fitness">fitness</option>
+                    <option value="powder">powder</option>
+                    <option value="steroids">steroids</option>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary mb-3 ">Add Pro</button>
