@@ -73,7 +73,7 @@ export default function Navbar() {
                         <Link style={{textDecoration:'none',color:'black'}} to={'/app/profile'} className='Profile'>Profile</Link>
                       </li>  
                       <li className='list-group-item '>
-                        <Link style={{textDecoration:'none',color:'black'}} className='MyOrders'>My Orders</Link>
+                        <Link style={{textDecoration:'none',color:'black'}} className='MyOrders' to={'/app/order'}>My Orders</Link>
                       </li> 
                       <li className='list-group-item '>
                       <Link style={{textDecoration:'none',color:'black'}} to={'/app/auth/logout'}>logout</Link>

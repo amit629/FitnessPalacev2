@@ -1,4 +1,4 @@
-import { Navigate, Route, RouterProvider, Routes, createBrowserRouter, createRoutesFromElements, redirect } from "react-router-dom";
+import { Navigate, Route, RouterProvider, Routes, createBrowserRouter, createRoutesFromElements, json, redirect } from "react-router-dom";
 import Home from "./Components/Home";
 import GymHome from "./Components/productsPages/gym/GymHome";
 import NearbyPlaces from "./Components/productsPages/gym/partials/NearbyPlaces";
@@ -27,6 +27,12 @@ import Addresses from "./Components/productsPages/store/storeComponents/Addresse
 import CheckOut from "./Components/productsPages/store/storeComponents/CheckOut";
 import AddWorkout from "./Components/productsPages/workouts/superAdmin/AddWorkout";
 import WorkoutsLan from "./Components/productsPages/workouts/workOutComponent/WorkoutsLan";
+import Workouts from "./Components/productsPages/workouts/workOutComponent/Workouts";
+import AdminSection from "./Components/productsPages/workouts/superAdmin/AdminSection";
+import Payments from "./Components/productsPages/store/storeComponents/Payments";
+import { Order } from "./reduxConf/slices/Order";
+import OrderStatus from "./Components/productsPages/store/storeComponents/OrderStatus";
+import Orders from "./Components/productsPages/store/storeComponents/Orders";
 
 const router=createBrowserRouter(
   createRoutesFromElements(
@@ -77,6 +83,42 @@ const router=createBrowserRouter(
 
           <Route index Component={Store}>
             
+          </Route>
+          <Route path="order">
+            <Route index element={<Orders/>}
+              loader={async({params})=>{
+                    let resp=await axios.get(`${process.env.REACT_APP_SERVER_URL}orders`,{
+                      headers:{
+                        'Authorization':`token ${JSON.parse(localStorage.getItem('login')).accessToken}`
+                      }
+                    }).catch((e)=>{
+                      throw json({
+                        errorLine:'bhai mechanic lage hai server jodne me sabar karo',
+                        actualError:e.code
+                      },{
+                        status:e.response?e.response.status:e.status
+                      });   
+                  })
+                  if(resp.data.err)
+                  {
+                    throw json({
+                      errorLine:'server ud gaya',
+                      actualError:resp.data.err
+                    },{
+                      status:resp.status
+                    })
+                  }
+                  return resp.data.data; 
+              }}
+              errorElement={<NotFound/>}
+            >
+
+            </Route>
+            <Route path="completion" element={<OrderStatus/>}
+              errorElement={<NotFound/>}
+            >
+
+            </Route>
           </Route>
           <Route
             path="profile"
@@ -166,6 +208,9 @@ const router=createBrowserRouter(
             <Route index element={<Cart/>}>
 
             </Route>
+            <Route path="checkOut" element={<Payments/>}>
+
+            </Route>
           <Route path="selectAddress" element={<Addresses/>}
             loader={async({params})=>{
               let accessToken=localStorage.getItem('login');
@@ -241,16 +286,58 @@ const router=createBrowserRouter(
           </Route>
       </Route>
       <Route path="app/workouts" element={<WorkoutHome/>}>
-              <Route index element={<WorkoutsLan/>}
+            <Route index element={<WorkoutsLan/>} ></Route>
+            <Route 
+              path="changeWorkouts" 
+              element={<AdminSection/>}
               loader={async({params})=>{
-                let resp=await axios.get(`${process.env.REACT_APP_SERVER_URL}workout`)
-
-                return resp;
+                  let resp=await axios.get(`${process.env.REACT_APP_SERVER_URL}workout/pid/${params.category}`).catch((e)=>{
+                      throw json({
+                        errorLine:'bhai mechanic lage hai server jodne me sabar karo',
+                        actualError:e.code
+                      },{
+                        status:e.response?e.response.status:e.status
+                      });   
+                  })
+                  if(resp.data.err)
+                  {
+                    throw json({
+                      errorLine:'server ud gaya',
+                      actualError:resp.data.err
+                    },{
+                      status:resp.status
+                    })
+                  }
+                  return resp.data.data;
+              }}
+            
+            ></Route>
+            <Route path="addWorkout" element={<AddWorkout/>}></Route>
+            <Route path="category/:category" element={<Workouts/>}
+              loader={async({params})=>{
+                  
+                    let resp=await axios.get(`${process.env.REACT_APP_SERVER_URL}workout/${params.category}`).catch((e)=>{
+                        throw json({
+                          errorLine:'bhai mechanic lage hai server jodne me sabar karo',
+                          actualError:e.code
+                        },{
+                          status:e.response?e.response.status:e.status
+                        });   
+                    })
+                    if(resp.data.err)
+                    {
+                      throw json({
+                        errorLine:'server ud gaya',
+                        actualError:resp.data.err
+                      },{
+                        status:resp.status
+                      })
+                    }
+                    return resp.data.data; 
+                  
               }}
               errorElement={<NotFound/> }
-              
-              ></Route>
-            <Route path="addWorkout" element={<AddWorkout/>}></Route>
+            ></Route>
       </Route>
   </Route>
   </>

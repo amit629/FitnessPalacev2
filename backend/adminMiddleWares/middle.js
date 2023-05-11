@@ -2,8 +2,10 @@ let jsonWebToken=require('jsonwebtoken')
 const { accessSecret } = require('../tokens');
 
 let verifyAuth=(req,res,next)=>{
+    console.log('hittind')
     const authHeader=req.headers['authorization'];
     let token=authHeader && authHeader.split(' ')[1];
+    console.log(token)
     if(token==null){
        return  res.redirect('/error')
     }

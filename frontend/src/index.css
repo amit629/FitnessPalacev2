@@ -1,3 +1,5 @@
+
+
 @import url('../node_modules/bootstrap/dist/css/bootstrap.css');
 
 body {
@@ -47,9 +49,10 @@ code {
   border-radius: 20px;
 }
 .sp-css-two{
-  height: 50vh;
+  height: 88vh;
   width: 100%;
-  border-radius: 20px;
+  border:3px solid black;
+  /* margin-left: 10%; */
 }
 .GymCardPhoto{  
   width: 3vw;
@@ -79,6 +82,7 @@ code {
 }
 .nearByCardsSpecialClass{
   height: 92vh;
+  /* width:90%; */
   overflow: auto;
 }
 .nearByCardsSpecialClass::-webkit-scrollbar{
@@ -161,4 +165,71 @@ code {
 .LandingCard:hover{
   box-shadow:0px 0px 10px white;
   transform:scale3d(100px 100px);
+}
+.bg-special-fitnessPalace{
+  background-color: rgba(0, 0, 0,0.8);
+}
+.lineSpecial{
+  color: black;
+  border:1px solid black;
+  width: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom:0px;
+}
+.spInpLog,.spTextARLog,.spSel{
+
+  padding: 0.5rem !important;
+
+  border: double 3px transparent !important;
+
+  width:700px !important;
+
+  height:50px !important;
+
+
+
+  border-radius: 20px !important;
+
+  background-image: linear-gradient(white, grey), 
+
+                    linear-gradient(to left, rgb(34, 255, 34),rgb(31, 130, 31)) !important;
+
+  background-origin: border-box !important;
+
+  background-clip: padding-box, border-box !important;
+  text-indent: 22px;
+
+}
+
+.spTextARLog{
+  height:200px !important; 
+  border-radius:20px !important;
+}
+.spTextARLog::-webkit-scrollbar{
+  display: none;
+}
+.spSel[multiple]{
+  height:100px !important;
+}
+.spSel[multiple]::-webkit-scrollbar{
+  display: none;
+}
+.spSel[multiple] option{
+  border-radius: 20px;
+  
+}
+.spSel[multiple] option:checked{
+  background-color: #000000 !important;
+  color: white !important;
+  
+}
+.spTextARLog::placeholder{
+  text-indent: 22px;
+}
+.spInpLog::placeholder{
+  text-indent: 22px;
+}
+::-webkit-file-upload-button {
+  display: none;
 }

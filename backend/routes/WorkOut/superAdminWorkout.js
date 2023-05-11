@@ -29,8 +29,8 @@ Router.post('/addWorkouts',verifyAuth,isSuperAdmin,uploadVid.array('file',3),asy
     workMod.force=force;
     workMod.category=category;
     workMod.grips=grips;
-    workMod.targetMuscle.primary=primary;
-    workMod.targetMuscle.secondary=secondary;
+    workMod.primary=primary;            
+    workMod.secondary=secondary.split(',');
     workMod.video=fileData
     let resp=await workMod.save();
     

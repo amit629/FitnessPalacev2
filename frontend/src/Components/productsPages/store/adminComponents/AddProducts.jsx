@@ -3,11 +3,16 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import { addProduct } from '../../../../reduxConf/slices/Products';
+import Spinner from '../../workouts/Spinner';
+import arniBoi from '../../../../img/arnold.jpg'
 
 export default function AddProducts() {
   const navigate=useNavigate()
   let userData=useSelector(state=>state.Auth.value)
   const dispatch=useDispatch()
+  let [buttonSubmit,setButtonSubmit]=useState(false);
+  let [dis,setDis]=useState(false);
+  let [buttonState,setButtonState]=useState('Add Workout')
   const [productData,setProductData]=useState({
     name:"",
     price:"",
@@ -66,32 +71,41 @@ export default function AddProducts() {
   }
   return (
     <>
-      <form action="/admin/AddProducts" method="post" enctype="multipart/form-data" align="center" class="adminForm" onSubmit={handleSubmit}>
-        <div class="m-5 mb-2">
-            <input type="text" placeholder="name" name="name" class="form-control inp" onChange={handleOnChange} required/>
+      <div className="container-fluid containerAddPro" style={{backgroundColor:'rgba(0,0,10,0.9)'}}>
+        <div className="row">
+          <div className="col-6 p-0">
+              <img src={arniBoi} className='AddPageImageStyle' alt="arnie boi hai idhar" />
+          </div>
+          <div className="col-6" align="center">
+              <form action="/admin/AddProducts" method="post" enctype="multipart/form-data" class="adminForm" onSubmit={handleSubmit}>
+                <div class="m-5 mb-2">
+                    <input type="text" placeholder="name" name="name" class="form-control inp spInpLog" onChange={handleOnChange} required/>
+                </div>
+                <div class="m-5 mb-2">
+                    <input type="number" placeholder="price" name="price" class="form-control inp spInpLog" onChange={handleOnChange} required/>
+                </div>
+                <div class="m-5 mb-2">
+                    <textarea type="text" placeholder="description use || for multiple" name="desc" onChange={handleOnChange} class="form-control inp spTextARLog" rows="6" required></textarea>
+                </div>
+                <div class="m-5 mb-2">
+                    <input type="file" name="img" id='img' class="form-control inp spInpLog" onChange={handleImage} required/>
+                </div>
+                <div class="m-5 mb-2">
+                    <select name="sel" id="" class="form-control inp  spSel" onChange={handleOnChange} required>
+                        <option value="">please select from list</option>
+                        <option value="protiens">protien</option>
+                        <option value="gainers">gainer</option>
+                        <option value="vitamins">vitamin</option>
+                        <option value="fitness">fitness</option>
+                        <option value="powder">powder</option>
+                        <option value="steroids">steroids</option>
+                    </select>
+                </div>
+                <button type="submit" class="buttonC" style={{width:'250px'}} onClick={handleSubmit} disabled={dis}>{buttonSubmit==true?<Spinner/>:buttonState} </button>
+            </form>
+          </div>
         </div>
-        <div class="m-5 mb-2">
-            <input type="number" placeholder="price" name="price" class="form-control inp" onChange={handleOnChange} required/>
-        </div>
-        <div class="m-5 mb-2">
-            <textarea type="text" placeholder="description use || for multiple" name="desc" onChange={handleOnChange} class="form-control inp" rows="6" required></textarea>
-        </div>
-        <div class="m-5 mb-2">
-            <input type="file" name="img" id='img' class="form-control inp" onChange={handleImage} required/>
-        </div>
-        <div class="m-5 mb-2">
-            <select name="sel" id="" class="form-control inp  " onChange={handleOnChange} required>
-                <option value="">please select from list</option>
-                <option value="protiens">protien</option>
-                <option value="gainers">gainer</option>
-                <option value="vitamins">vitamin</option>
-                <option value="fitness">fitness</option>
-                <option value="powder">powder</option>
-                <option value="steroids">steroids</option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-primary mb-3 ">Add Pro</button>
-    </form>
+      </div>
 
     </>
   )

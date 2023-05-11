@@ -41,6 +41,12 @@ let userSchema=new mongoose.Schema({
             type:mongoose.Schema.Types.ObjectId,
             ref:'Address'
         }
+    ],
+    orders:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'Order'
+        }
     ]
 })
 

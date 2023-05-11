@@ -4,7 +4,7 @@ import './Auth/auth.css'
 export default function Auth() {
   return (
     <>
-        <div className="container-fluid bg-danger" style={{height:"100vh",width:'100vw'}}>
+        <div className="container-fluid bg-special-fitnessPalace" style={{height:"100vh",width:'100vw'}}>
                  
                 <Link to="/"><i class="fa-sharp fa-solid fa-xmark authCross"></i></Link>
                 <div style={{position:'relative',top:'12vh'}}>

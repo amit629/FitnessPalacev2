@@ -50,9 +50,9 @@ export default function Profile() {
                   <img src={`${process.env.REACT_APP_SERVER_URL}productImages/${userData.image}`} className='ProfileImg ' onClick={()=>{setVis((prev)=>{return !prev})}}>
                     
                     </img>
-                  {vis&&
+                  {/* {vis&& */}
                     <input type='file'   onChange={setOnChange} name='file' value={''} placeholder='' className='changeProfImg'/>
-                  }
+                  {/* } */}
                   {imagData.uid.length!=0?
                   (<>
                     <button onClick={handleSave} className='btn btn-dark' style={{fontSize:'1.6rem',borderRadius:'5px'}}>save</button>

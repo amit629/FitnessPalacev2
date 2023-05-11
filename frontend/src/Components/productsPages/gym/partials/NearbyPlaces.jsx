@@ -33,25 +33,24 @@ export default function NearbyPlaces() {
   return (
     <>
       
-      {gymData.length!=0?<div className="container-fluid">
+      {gymData.length!=0?<div className="container-fluid me-0 pe-0">
         
         <div className="row">
-          <div className="col-5">
-            {gymData.length!=0?<><AllGymMaps placeData={gymData}/><button className='btn btn-secondary mt-3' onClick={moreDataFun}>Show More Gym</button></>:<h1></h1>}
-            
-          </div>
-          <div className="col-7 nearByCardsSpecialClass">
+          
+          <div className="col-4 nearByCardsSpecialClass p-5 ps-0 pe-0">
             <h1 className='ms-5 mt-4'>Near By Gyms</h1>
+            <hr className='lineSpecial'/>
             {
             gymData.length!=0?
-                <div className="row">
+                <div >
                 
                   {
                     gymData.map((ele,ind)=>{
                       
-                        return <div className="col-5 ms-5">
+                        return <>
                           <NearByCards data={ele} key={ind}/>
-                        </div>
+                        </>
+                        
 
                     })
                   }
@@ -60,6 +59,10 @@ export default function NearbyPlaces() {
               :<h1>loading...</h1>
           }
               
+            
+          </div>
+          <div className="col-8 ps-0">
+            {gymData.length!=0?<><AllGymMaps placeData={gymData}/></>:<h1></h1>}
             
           </div>
         </div>

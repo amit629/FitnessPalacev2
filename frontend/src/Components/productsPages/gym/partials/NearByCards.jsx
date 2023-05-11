@@ -7,9 +7,9 @@ export default function NearByCards({data}) {
   return (
     <>
       {/* {console.log(data)} */}
-        <div className="card mt-5" style={{width: "25vw",height:"25vh"}}>
+        <div className="card p-0" style={{width: "100%",height:"25vh"}}>
         {/* <img src={data.icon} className="card-img-top" alt="..."/> */}
-        <div className="card-body d-flex justify-content-between">
+        <div className="card-body d-flex justify-content-between pe-0 ">
           <div className='d-flex flex-column justify-content-around'>
             <h5 className="card-title">{data.name}</h5>
             <p className="card-text">{data.vicinity}</p>

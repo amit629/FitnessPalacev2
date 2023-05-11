@@ -52,17 +52,16 @@ const Workout=new mongoose.Schema({
         default:'Neutral',
         trim:true
     },
-    targetMuscle:{
-        primary:{
-            type:String,
-            required:true,
-            trim:true
-        },
-        secondary:{
-            type:[String],
-            default:[]
-        }
+    primary:{
+        type:String,
+        required:true,
+        trim:true
+    },
+    secondary:{
+        type:[String],
+        default:[]
     }
+
     
 })
 

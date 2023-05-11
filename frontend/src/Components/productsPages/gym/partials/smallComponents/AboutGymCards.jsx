@@ -25,7 +25,14 @@ export default function AboutGymCards({data}) {
             })
             return;
         }
-        let imgs=[data.photos[1],data.photos[2],data.photos[3]]     
+        let imgs=[];
+        data.photos.forEach((ele,ind)=>{
+            if(ind>5)
+            {
+                return;
+            }
+            imgs.push(ele);
+        })   
         imgs.forEach(async(ele)=>{
             const photoRef=ele.photo_reference;
             const proxy="http://localhost:8080/"

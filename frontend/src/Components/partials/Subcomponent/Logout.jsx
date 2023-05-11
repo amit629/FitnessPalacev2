@@ -8,7 +8,7 @@ export default function Logout() {
     const dispatch=useDispatch()
     useEffect(()=>{
         dispatch(removeLogin());
-        navigate('/app')
+        navigate(-1)
     },[])
   return (
     <div>

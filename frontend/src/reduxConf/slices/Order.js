@@ -5,24 +5,36 @@ export const Order=createSlice({
     name:'order',
     initialState:{
         value:{
-            address:'',
-            total:'',
-            paymentMethod:'',
-            deliveryData:''
+            address:{
+                billingAddress:"",
+                shippingAddress:""
+            },
+            Products:'',
+            paymentStatus:'',
+            paymentMethod:'',   
+            total:0
         }
     },
     reducers:{
-        UpdateOrder:(state,action)=>{
-            state.value.address=action.payload.address;
-            state.value.total=action.payload.total;
-        },
+        updateBillingAdd:(state,action)=>{
+            state.value.address.billingAddress=action.payload;
+            
+        },updateShippingAdd:(state,action)=>{
+            state.value.address.shippingAddress=action.payload;
+
+        },UpdateProducts:(state,action)=>{
+            state.value.Products=action.payload;
+        },  
         UpdatePayment:(state,action)=>{
+            state.value.paymentStatus=action.payload;
+        },UpdatePaymentMethod:(state,action)=>{
             state.value.paymentMethod=action.payload;
         },
-        UpdateDelivery:(state,action)=>{
-            state.value.deliveryData=action.payload
+        UpdateTotal:(state,action)=>{
+            state.value.total=action.payload;
         }
+    
     }   
 })
 
-export const {UpdateOrder,UpdateDelivery,UpdatePayment} = Order.actions
+export const {updateBillingAdd,updateShippingAdd,UpdateProducts,UpdatePayment,UpdateTotal,UpdatePaymentMethod} = Order.actions

@@ -14,9 +14,7 @@ export default function StoreHome() {
       <header>
         <Navbar />
       </header>
-      <section>
         <Outlet/>
-      </section>
       
     </>
   )

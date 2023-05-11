@@ -21,9 +21,7 @@ export default function AdminDashBoard() {
   },[])
   return (
     <>
-        <section>
             <Outlet userData={userData}/>
-        </section>
     </>
   )
 }

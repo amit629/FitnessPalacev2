@@ -7,12 +7,12 @@ export default function Navbar() {
     const dispatch=useDispatch()
     const navigate=useNavigate();
     let [userName,setUserName]=useState(false);
-    useEffect(()=>{
-      if(!userData || localStorage.getItem('login')==null)
-      {
-        navigate('/app')
-      }
-    },[])
+    // useEffect(()=>{
+    //   if(!userData || localStorage.getItem('login')==null)
+    //   {
+    //     navigate('/app')
+    //   }
+    // },[])
     // let logout=(e)=>{
     //   dispatch(removeLogin())
     //   console.log('h1')
@@ -42,11 +42,8 @@ export default function Navbar() {
                     {
                       userData.role=='admin'  &&(<>
                           <li className="nav-item">
-                          <Link className="navbar-link fs-3" aria-current="page" to="/app/workouts/addWorkout">Add Workouts</Link>
+                            <Link className="navbar-link fs-3" aria-current="page" to="/app/workouts/addWorkout">Add Workouts</Link>
                           </li> 
-                          <li className="nav-item">
-                            <Link className="navbar-link fs-3" aria-current="page" to="/app/workouts/changeWorkouts">Workouts</Link>
-                          </li>
                       </>
                       )
                     }

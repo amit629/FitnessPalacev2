@@ -15,7 +15,7 @@ export default function GymHome() {
             <GymNav/>
         </header>
         <main>
-            <div className="container-fluid">
+            <div className="container-fluid me-0 ms-0 ps-0 pe-0" style={{marginTop:'8vh'}}>
                 <Outlet/>
             </div>
         </main>
